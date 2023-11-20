@@ -7,7 +7,7 @@ pipeline {
         stage('Build') {
             steps {
                 
-             //  sh "rm -rf /mnt/jenkins_slave1/workspace/*"
+            
                sh "sudo yum install httpd git -y"
           
                 git url:'https://github.com/NamanBahre/deploy_branches_multi_ec2_pipeline.git',branch:'Q1'
