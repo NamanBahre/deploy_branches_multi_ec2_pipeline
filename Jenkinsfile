@@ -1,31 +1,22 @@
 pipeline {
     agent {
-        node{
-            
-        label "built-in"
-        customWorkspace "/mnt/app/"
-            
-        }
+        label "slave-1"
     }
 
     stages {
         stage('Build') {
             steps {
                 
-                sh "rm -rf /mnt/app/*"
+             //  sh "rm -rf /mnt/jenkins_slave1/workspace/*"
+               sh "sudo yum install httpd git -y"
           
-                git url: 'https://github.com/NamanBahre/project.git'
-
-                sh "mvn clean install"
+                git url:'https://github.com/NamanBahre/deploy_branches_multi_ec2_pipeline.git',branch:'Q1'
+                
+                sh "sudo cp -r /mnt/jenkins_slave1/workspace/test/*.html /var/www/html/"
+                sh "sudo service httpd restart"
                 
         
-        sshagent(['slave']) {
-    // some block
-                 sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.35.207 "
-                
-                sh "scp /mnt/app/target/LoginWebApp.war ec2-user@172.31.35.207:/mnt/servers/apache-tomcat-9.0.83/webapps/"
-                    }
-      
+       
                
             
                 
