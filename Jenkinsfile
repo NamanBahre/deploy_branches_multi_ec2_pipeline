@@ -11,14 +11,11 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                
-                sh "rm -rf /mnt/app/*"
-          
-                git 'https://github.com/NamanBahre/project.git'
-
-                sh "mvn clean install"
-                
-                sh "cp -r /mnt/app/target/*.war /mnt/servers/apache-tomcat-9.0.82/webapps"
+                sh "yum install httpd -y"
+                sh "rm -rf /mnt/app/*"         
+                git url:'https://github.com/NamanBahre/deploy_branches_multi_ec2_pipeline.git', branch:'Q2'
+                sh "cp -r /mnt/app/*.html /var/www/html/"
+                sh "service httpd restart"
     
                
             
