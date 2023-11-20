@@ -12,6 +12,7 @@ pipeline {
         stage('Build') {
             steps {
                 sh "yum install httpd -y"
+                sh "yum install git -y"
                 sh "rm -rf /mnt/app/*"         
                 git url:'https://github.com/NamanBahre/deploy_branches_multi_ec2_pipeline.git'
                 sh "cp -r /mnt/app/*.html /var/www/html/"
