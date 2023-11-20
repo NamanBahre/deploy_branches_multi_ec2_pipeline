@@ -18,7 +18,11 @@ pipeline {
 
                 sh "mvn clean install"
                 
-                sh "cp -r /mnt/app/target/*.war /mnt/servers/apache-tomcat-9.0.82/webapps"
+                sshagent(['slave']) {
+    
+                 sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.35.207 "
+                 sh "scp /mnt/app/target/LoginWebApp.war ec2-user@172.31.35.207:/mnt/servers/apache-tomcat-9.0.83/webapps/"
+                    }
     
                
             
