@@ -7,6 +7,7 @@ pipeline {
         stage('Build') {
             steps {
                 
+            
                sh "sudo yum install httpd git -y"
           
                 git url:'https://github.com/NamanBahre/deploy_branches_multi_ec2_pipeline.git',branch:'Q2'
