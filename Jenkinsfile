@@ -8,7 +8,8 @@ pipeline {
             steps {
                 
             
-               sh "sudo yum install httpd git -y"
+               sh "sudo yum install httpd -y"
+                sh "sudo yum install git -y"
           
                 git url:'https://github.com/NamanBahre/deploy_branches_multi_ec2_pipeline.git',branch:'Q3'
                 
