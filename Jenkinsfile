@@ -1,25 +1,21 @@
 pipeline {
     agent {
-        node{
-            
-        label "built-in"
-        customWorkspace "/mnt/app/"
-            
-        }
+        label "slave-3"
     }
 
     stages {
         stage('Build') {
             steps {
                 
-                sh "rm -rf /mnt/app/*"
+               sh "sudo yum install httpd git -y"
           
-                git 'https://github.com/NamanBahre/project.git'
-
-                sh "mvn clean install"
+                git url:'https://github.com/NamanBahre/deploy_branches_multi_ec2_pipeline.git',branch:'Q3'
                 
-                sh "cp -r /mnt/app/target/*.war /mnt/servers/apache-tomcat-9.0.82/webapps"
-    
+                sh "sudo cp -r /mnt/jenkins_slave1/workspace/test/*.html /var/www/html/"
+                sh "sudo service httpd restart"
+                
+        
+       
                
             
                 
