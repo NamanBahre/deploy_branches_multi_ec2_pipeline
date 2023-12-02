@@ -10,7 +10,7 @@ pipeline {
             steps{   
                 sh "chmod -R 777 /mnt"
                sh "sudo yum install httpd -y"
-                sh "sudo yum install git -y
+                sh "sudo yum install git -y"
         }
         stage('Build') {
             steps {
