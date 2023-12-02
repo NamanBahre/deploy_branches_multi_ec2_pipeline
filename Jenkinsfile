@@ -18,7 +18,7 @@ pipeline{
             stage ("install"){
 			steps {
 			 sh 'sudo yum install git -y'
-             sh 'sudo yum install httpd -y'   
+             		 sh 'sudo yum install httpd -y'   
 			} 
 			}
 			
