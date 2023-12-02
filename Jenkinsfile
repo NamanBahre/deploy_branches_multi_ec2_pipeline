@@ -15,7 +15,7 @@ pipeline {
         stage('Build') {
             steps {
                 git url:'https://github.com/NamanBahre/deploy_branches_multi_ec2_pipeline.git',branch:'Q1'
-                sh "sudo cp -r /mnt/jenkins_slave1/workspace/test/*.html /var/www/html/"
+                sh "sudo cp -r /mnt/app/*.html /var/www/html/"
                 sh "chmod -R 777 /var"
                 sh "sudo service httpd restart"
                 }
