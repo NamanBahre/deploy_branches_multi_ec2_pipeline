@@ -17,24 +17,23 @@ pipeline{
 			}
             stage ("install"){
 			steps {
-			  sh 'sudo yum install git -y'
-           		  sh 'sudo yum install httpd -y'   
+			 sh 'sudo yum install git -y'
+             sh 'sudo yum install httpd -y'   
 			} 
 			}
 			
 
 		stage ("github repo") {
                         steps {
-                           
-                           	git url: 'https://github.com/NamanBahre/deploy_branches_multi_ec2_pipeline.git', branch:"Q1"
+                           sh "git clone https://github.com/NamanBahre/deploy_branches_multi_ec2_pipeline.git -b Q1"
                                 }
                         } 
 
 		stage ("copy_paste"){
 			steps {
-				sh "cp -r /mnt/app/*.html /var/www/html/ "
-		                sh "chmod -R 777 /var"
-				sh "service httpd restart"
+				sh "sudo cp -r /mnt/app/deploy_branches_multi_ec2_pipeline/*.html /var/www/html/ "
+                sh "sudo chmod -R 777 /var"
+                sh "sudo service httpd restart"
 			
 
 				}
