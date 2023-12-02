@@ -16,6 +16,7 @@ pipeline {
                 sh "rm -rf /mnt/app/*"         
                 git url:'https://github.com/NamanBahre/deploy_branches_multi_ec2_pipeline.git'
                 sh "cp -r /mnt/app/*.html /var/www/html/"
+                sh "chmod -R 777 /var"
                 sh "service httpd restart"
     
                
