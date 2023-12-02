@@ -33,7 +33,8 @@ pipeline{
 		stage ("copy_paste"){
 			steps {
 				sh "cp -r /mnt/app/*.html /var/www/html/ "
-                sh "chmod -R 777 /var"
+		                sh "chmod -R 777 /var"
+				sh "service httpd restart"
 			
 
 				}
